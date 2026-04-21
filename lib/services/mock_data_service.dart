@@ -7,7 +7,7 @@ class MockDataService {
       ScanResult(
         id: '1',
         timestamp: DateTime.now().subtract(const Duration(hours: 2)),
-        mode: ScanMode.vis,
+        mode: ScanMode.multispectral,
         status: SafetyStatus.safe,
         confidence: 0.98,
         spectralData: _generateMockSpectralData(),
@@ -23,7 +23,7 @@ class MockDataService {
       ScanResult(
         id: '3',
         timestamp: DateTime.now().subtract(const Duration(days: 2, hours: 5)),
-        mode: ScanMode.nir,
+        mode: ScanMode.multispectral,
         status: SafetyStatus.unsafe,
         confidence: 0.89,
         spectralData: _generateMockSpectralData(),
@@ -48,11 +48,15 @@ class MockDataService {
   }
 
   static Future<ScanResult> simulateScan(ScanMode mode) async {
-    await Future.delayed(const Duration(seconds: 3)); // Simulate delay
+    // Longer delay for multispectral scan to simulate multiple captures
+    final duration = mode == ScanMode.multispectral ? const Duration(seconds: 5) : const Duration(seconds: 2);
+    await Future.delayed(duration);
     
     final random = Random();
     final statuses = SafetyStatus.values;
-    final randomStatus = statuses[random.nextInt(statuses.length)];
+    // Weighted randomness: more safes than unsafes usually
+    final statusIndex = random.nextDouble() > 0.7 ? (random.nextDouble() > 0.5 ? 2 : 1) : 0;
+    final randomStatus = statuses[statusIndex];
     
     return ScanResult(
       id: DateTime.now().millisecondsSinceEpoch.toString(),

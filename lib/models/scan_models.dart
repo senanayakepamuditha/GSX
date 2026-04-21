@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 enum ScanMode {
-  uv(name: 'UV', description: 'Ultraviolet Spectrum'),
-  vis(name: 'VIS', description: 'Visible Spectrum'),
-  nir(name: 'NIR', description: 'Near-Infrared Spectrum');
+  multispectral(name: 'MULTI', description: 'Multispectral Scan (395-850nm)'),
+  uv(name: 'UV', description: '395nm - Ultraviolet'),
+  vis(name: 'VIS', description: '550nm - Visible Green'),
+  red(name: 'RED', description: '660nm - Visible Red'),
+  farRed(name: 'FRE', description: '730nm - Far Red'),
+  nir(name: 'NIR', description: '850nm - Near-Infrared');
 
   final String name;
   final String description;
