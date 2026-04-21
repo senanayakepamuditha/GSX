@@ -1,0 +1,41 @@
+# Flutter/Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+
+# Web related
+.web_entrypoint.dart
+.web_manifest.json
+
+# Symbolication logging
+flutter_*.png
+flutter_*.symbol
+
+# Environment variables
+.env
+
+# Android related
+**/android/**/generated/
+**/android/app/src/main/res/values/strings.xml
+android/key.properties
+android/local.properties
+android/native-app-id.txt
+
+# iOS/macOS related
+**/ios/**/Pods/
+**/ios/**/.DS_Store
+**/ios/**/Generated.xcconfig
+**/ios/**/Flutter/Generated.xcconfig
+**/ios/**/Flutter/flutter_export_environment.sh
+**/ios/**/ServiceDefinitions.json
+**/ios/**/GoogleService-Info.plist
+**/ios/**/Runner/config.json
+Pods/
+DerivedData/
+
+# Project specific
+.vscode/
+.idea/
+*.iml
